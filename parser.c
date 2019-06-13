@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/11 21:12:06 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/13 16:42:22 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,49 @@ t_line		*get_map(int fd)
 {
 	int		i;
 	char	*line;
-	t_line	*lst;
+	t_line	*list;
 	t_line	*begin;
 
-	if (!(lst = malloc(sizeof(t_line))))
+	if (!(list = malloc(sizeof(t_line))))
 		return (0);
-	begin = lst;
+	begin = list;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (!(lst->str = ft_strsplit(line, ' ')))
+		if (!(list->str = ft_strsplit(line, ' ')))
 			return (0);
 		i = 0;
-		while (lst->str[i])
+		while (list->str[i])
 			i++;
-		lst->x_str = i;
-		lst->next = malloc(sizeof(t_line));
-		lst = lst->next;
-		lst->y_str++;
+		list->x_str = i;
+		list->next = malloc(sizeof(t_line));
+		list = list->next;
+		list->y_str++;
 		free(line);
 	}
-	lst->next = NULL;
+	list->next = NULL;
 	return (begin);
 }
 
 int			check_map(t_line *line)
 {
-	t_line	*tmp;
+	t_line	*temp;
 	int		x;
-	int		nb_line;
+	int		num_line;
 
-	tmp = line;
-	nb_line = 0;
+	temp = line;
+	num_line = 0;
 	x = line->x_str;
-	while (tmp->next)
+	while (temp->next)
 	{
 		if (x != line->x_str)
 		{
 			write(2, "Error:\nThe file is invalid", 26);
 			exit(1);
 		}
-		tmp = tmp->next;
-		nb_line++;
+		temp = temp->next;
+		num_line++;
 	}
-	return (nb_line);
+	return (num_line);
 }
 
 t_parse		*get_tab(t_line *line)
