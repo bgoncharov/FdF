@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/13 17:17:50 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:25:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ typedef struct		s_mlx
 	void			*ptr;
 	void			*wdw;
 	int				check;
-	t_img			*img;
-	t_parse			*map;
-	t_zoom			*zoom;
+	t_img			img;
+	t_parse			map;
+	t_zoom			zoom;
 }					t_mlx;
 
 typedef struct		s_coord
@@ -77,11 +77,11 @@ typedef struct		s_coord
 
 t_line		*get_map(int fd);
 int			check_map(t_line *line);
-t_parse		*get_tab(t_line *line);
-void	proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
-void  proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
+t_parse		get_tab(t_line *line);
+void		proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
+void  		proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
 void		draw_map(t_mlx *mlx, char c);
-void	swap_xy(int *x1, int *x2, int *y1, int *y2);
-void	line(t_mlx *mlx, t_coord *p, int color);
+void		swap_xy(int *x1, int *x2, int *y1, int *y2);
+void		line(t_mlx *mlx, t_coord p, int color);
 
 #endif

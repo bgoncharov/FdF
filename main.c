@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/13 17:19:04 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:28:28 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void		ft_exit(void)
 
 int		keyboard(int key, t_mlx *mlx)
 {
-
-	//t_space		add;
-
 	printf("Key:%d\n", key);
 	if (key == 53)
 	{
@@ -34,22 +31,22 @@ int		keyboard(int key, t_mlx *mlx)
 	if (key == 38 || key == 69 || key == 24)
 	{
 		mlx->check++;
-		mlx->zoom->gap_x *= 1.1;
-		mlx->zoom->gap_y *= 1.1;
-		ft_bzero(mlx->img->data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
+		mlx->zoom.gap_x *= 1.1;
+		mlx->zoom.gap_y *= 1.1;
+		ft_bzero(mlx->img.data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
 		mlx_clear_window(mlx->ptr, mlx->wdw);
-		draw_map(mlx, 'i');
-		mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img->img_ptr, 0, 0);
+		ft_draw_map(mlx, 'i');
+		mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
 	}
 	if (key == 40 || key == 27 || key == 78)
 	{
 		mlx->check++;
-		mlx->zoom->gap_x *= 0.9;
-		mlx->zoom->gap_y *= 0.9;
+		mlx->zoom.gap_x *= 0.9;
+		mlx->zoom.gap_y *= 0.9;
 		mlx_clear_window(mlx->ptr, mlx->wdw);
-		ft_bzero(mlx->img->data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
-		draw_map(mlx, 'i');
-		mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img->img_ptr, 0, 0);
+		ft_bzero(mlx->img.data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
+		ft_draw_map(mlx, 'i');
+		mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
 	}
 	return (0);
 }
@@ -82,27 +79,29 @@ int			main(int ac, char **av)
 
 	if (ac == 3)
 	{
+		int		fd;
+	t_mlx	mlx;
+	t_img	img;
+
+	if (ac == 3)
+	{
 		fd = ft_verif(av[1]);
-		mlx->map = get_tab(get_map(fd));
+		mlx.map = get_tab(ft_get_map(fd));
 		if (close(fd) == -1)
 		{
 			write(2, "Error: file can't be closed\n", 28);
 			exit(1);
 		}
-		mlx->ptr = mlx_init();
-		mlx->wdw = mlx_new_window(mlx->ptr, WIN_WIDTH, WIN_HEIGHT,
-				"Hello fdf!");
-		img->img_ptr = mlx_new_image(mlx->ptr, WIN_WIDTH, WIN_HEIGHT);
-		img->data = (int *)mlx_get_data_addr(img->img_ptr, &(img->bpp), &(img->s_l), &(img->endian));
-		mlx->img = img;
-		printf("hello\n");
-		mlx->check = 0;
-		printf("hello check\n");
-		mlx->zoom = &zoom;
-		draw_map(mlx, av[2][1]);
-		mlx_put_image_to_window(mlx->ptr, mlx->wdw, img->img_ptr, 0, 0);
-		mlx_key_hook(mlx->wdw, keyboard, mlx);
-		mlx_loop(mlx->ptr);
+		mlx.ptr = mlx_init();
+		mlx.wdw = mlx_new_window(mlx.ptr, WIN_WIDTH, WIN_HEIGHT, "FdF");
+		img.img_ptr = mlx_new_image(mlx.ptr, WIN_WIDTH, WIN_HEIGHT);
+		img.data = (int *)mlx_get_data_addr(img.img_ptr, &(img.bpp), &(img.s_l), &(img.endian));
+		mlx.img = img;
+		mlx.check = 0;
+		ft_draw_map(&mlx, av[2][1]);
+		mlx_put_image_to_window(mlx.ptr, mlx.wdw, img.img_ptr, 0, 0);
+		mlx_key_hook(mlx.wdw, keyboard, &mlx);
+		mlx_loop(mlx.ptr);
 	}
 	else
 		write(2, "Usage: ./fdf <file.fdf> -p/-i\n", 30);
