@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 18:22:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:30:12 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void  proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
 	a = 500;
 	offset_x = WIN_WIDTH / (mlx->map.x_tab + 1);
 	offset_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-	mlx->p.x1 = offset_x + x1 + (a * z1) / 1000;
-	mlx->p.x2 = offset_x + x2 + (a * z2) / 1000;
-	mlx->p.y1 = offset_y + y1 + (a * z1) / 2000;
-	mlx->p.y2 = offset_y + y2 + (a * z2) / 2000;
+	mlx->p.x1 = mlx->p.gap_x + x1 + (a * z1) / 1000;
+	mlx->p.x2 = mlx->p.gap_x + x2 + (a * z2) / 1000;
+	mlx->p.y1 = mlx->p.gap_y + y1 + (a * z1) / 2000;
+	mlx->p.y2 = mlx->p.gap_y + y2 + (a * z2) / 2000;
 	color = 65535;
 	if (z1 > 0 || z2 > 0)
 		color = 16761035;
