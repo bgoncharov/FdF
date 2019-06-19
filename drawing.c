@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 18:11:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:22:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,18 @@ void	proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
 	b = 500;
 	offset_x = (WIN_WIDTH * 2) / 5;
 	offset_y = WIN_HEIGHT / 5;
-	p.x1 = offset_x + (a * x1 - b * y1) / 1000;
-	p.x2 = offset_x + (a * x2 - b * y2) / 1000;
-	p.y1 = offset_y -z1 + ((a / 2) * x1 + (b / 2) * y1) / 1000;
-	p.y2 = offset_y -z2 + ((a / 2) * x2 + (b / 2) * y2) / 1000;
+	mlx->p.x1 = offset_x + (a * x1 - b * y1) / 1000;
+	mlx->p.x2 = offset_x + (a * x2 - b * y2) / 1000;
+	mlx->p.y1 = offset_y -z1 + ((a / 2) * x1 + (b / 2) * y1) / 1000;
+	mlx->p.y2 = offset_y -z2 + ((a / 2) * x2 + (b / 2) * y2) / 1000;
 	color = 65535;
 	if (z1 > 0 || z2 > 0)
 		color = 16761035;
-	line(mlx, p, color);
+	line(mlx, color);
 }
 
 void  proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
 {
-	t_coord p;
 	int a;
 	int color;
 	int	offset_x;
@@ -46,14 +45,14 @@ void  proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
 	a = 500;
 	offset_x = WIN_WIDTH / (mlx->map.x_tab + 1);
 	offset_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-	p.x1 = offset_x + x1 + (a * z1) / 1000;
-	p.x2 = offset_x + x2 + (a * z2) / 1000;
-	p.y1 = offset_y + y1 + (a * z1) / 2000;
-	p.y2 = offset_y +  y2 + (a * z2) / 2000;
+	mlx->p.x1 = offset_x + x1 + (a * z1) / 1000;
+	mlx->p.x2 = offset_x + x2 + (a * z2) / 1000;
+	mlx->p.y1 = offset_y + y1 + (a * z1) / 2000;
+	mlx->p.y2 = offset_y + y2 + (a * z2) / 2000;
 	color = 65535;
 	if (z1 > 0 || z2 > 0)
 		color = 16761035;
-	line(mlx, p, color);
+	line(mlx, color);
 }
 
 void		draw_map(t_mlx *mlx)
@@ -113,10 +112,11 @@ void	swap_xy(int *x1, int *x2, int *y1, int *y2)
 	*y1 = tmp;
 }
 
-void	line(t_mlx *mlx, t_coord p, int color)
+void	line(t_mlx *mlx, int color)
 {
 	int x;
 	int y;
+	t_coord p;
 
 	if (p.x1 > p.x2)
 		swap_xy(&(p.x1), &(p.x2), &(p.y1), &(p.y2));

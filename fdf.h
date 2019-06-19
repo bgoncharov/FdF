@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 18:07:15 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:13:23 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void		proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
 void  		proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
 void		draw_map(t_mlx *mlx);
 void		swap_xy(int *x1, int *x2, int *y1, int *y2);
-void		line(t_mlx *mlx, t_coord p, int color);
+void		line(t_mlx *mlx, int color);
 
 #endif
