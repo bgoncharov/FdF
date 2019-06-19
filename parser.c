@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 17:21:28 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:10:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_parse		get_tab(t_line *line)
 	int		i;
 	int		j;
 
-	map.y_tab = ft_check_map(line);
+	map.y_tab = check_map(line);
 	map.x_tab = line->x_str;
 	map.tab = malloc(sizeof(int **) * map.y_tab);
 	j = 0;
