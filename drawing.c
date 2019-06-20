@@ -6,15 +6,14 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 18:30:12 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/19 18:51:17 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
+void	proj_iso(t_mlx *mlx, int *xyz)
 {
-	t_coord p;
 	int a;
 	int b;
 	int color;
@@ -25,34 +24,30 @@ void	proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
 	b = 500;
 	offset_x = (WIN_WIDTH * 2) / 5;
 	offset_y = WIN_HEIGHT / 5;
-	mlx->p.x1 = offset_x + (a * x1 - b * y1) / 1000;
-	mlx->p.x2 = offset_x + (a * x2 - b * y2) / 1000;
-	mlx->p.y1 = offset_y -z1 + ((a / 2) * x1 + (b / 2) * y1) / 1000;
-	mlx->p.y2 = offset_y -z2 + ((a / 2) * x2 + (b / 2) * y2) / 1000;
+	mlx->p.x1 = offset_x + (a * xyz[0] - b * xyz[1]) / 1000;
+	mlx->p.x2 = offset_x + (a * xyz[3] - b * xyz[4]) / 1000;
+	mlx->p.y1 = offset_y -xyz[2] + ((a / 2) * xyz[0] + (b / 2) * xyz[1]) / 1000;
+	mlx->p.y2 = offset_y -xyz[5] + ((a / 2) * xyz[3] + (b / 2) * xyz[4]) / 1000;
 	color = 65535;
-	if (z1 > 0 || z2 > 0)
+	if (xyz[2] > 0 || xyz[5] > 0)
 		color = 16761035;
-	line(mlx, color);
+	ft_line(mlx, color);
 }
 
-void  proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2)
+void  proj_p(t_mlx *mlx, int *xyz)
 {
 	int a;
 	int color;
-	int	offset_x;
-	int	offset_y;
 
 	a = 500;
-	offset_x = WIN_WIDTH / (mlx->map.x_tab + 1);
-	offset_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-	mlx->p.x1 = mlx->p.gap_x + x1 + (a * z1) / 1000;
-	mlx->p.x2 = mlx->p.gap_x + x2 + (a * z2) / 1000;
-	mlx->p.y1 = mlx->p.gap_y + y1 + (a * z1) / 2000;
-	mlx->p.y2 = mlx->p.gap_y + y2 + (a * z2) / 2000;
+	mlx->p.x1 = mlx->p.gap_x + xyz[0] + (a * xyz[2]) / 1000;
+	mlx->p.x2 = mlx->p.gap_x + xyz[3] + (a * xyz[5]) / 1000;
+	mlx->p.y1 = mlx->p.gap_y + xyz[1] + (a * xyz[2]) / 2000;
+	mlx->p.y2 = mlx->p.gap_y + xyz[4] + (a * xyz[5]) / 2000;
 	color = 65535;
-	if (z1 > 0 || z2 > 0)
+	if (xyz[2] > 0 || xyz[5] > 0)
 		color = 16761035;
-	line(mlx, color);
+	ft_line(mlx, color);
 }
 
 void		draw_map(t_mlx *mlx)
@@ -63,6 +58,7 @@ void		draw_map(t_mlx *mlx)
 	int			gap_x;
 	int			gap_y;
 	int			gap_z;
+	int			xyz[6];
 
 	tab = mlx->map.tab;
 	if (mlx->check == 0)
@@ -80,19 +76,42 @@ void		draw_map(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->map.x_tab)
 		{
+			xyz[0] = x * gap_x;
+			xyz[1] = y * gap_y;
+			xyz[2] = tab[y][x] * gap_z;
 			if (mlx->proj == 'i')
 			{
 				if (x < (mlx->map.x_tab - 1))
-					proj_iso(mlx, x * gap_x, y * gap_y, tab[y][x] * gap_z, (x + 1) * gap_x, y * gap_y, tab[y][x + 1] * gap_z);
+				{
+					xyz[3] = (x + 1) * gap_x;
+					xyz[4] = y * gap_y;
+					xyz[5] = tab[y][x + 1] * gap_z;
+					ft_proj_iso(mlx, xyz);
+				}
 				if (y < (mlx->map.y_tab - 1))
-					proj_iso(mlx, x * gap_x, y * gap_y, tab[y][x] * gap_z, x * gap_x, (y + 1) * gap_y, tab[y + 1][x] * gap_z);
+				{
+					xyz[3] = x * gap_x;
+					xyz[4] = (y + 1) * gap_y;
+					xyz[5] = tab[y + 1][x] * gap_z;
+					ft_proj_iso(mlx, xyz);
+				}
 			}
 			if (mlx->proj == 'p')
 			{
 				if (x < (mlx->map.x_tab - 1))
-					proj_p(mlx, x * gap_x, y * gap_y, tab[y][x] * gap_z, (x + 1) * gap_x, y * gap_y, tab[y][x + 1] * gap_z);
+				{
+					xyz[3] = (x + 1) * gap_x;
+					xyz[4] = y * gap_y;
+					xyz[5] = tab[y][x + 1] * gap_z;
+					ft_proj_p(mlx, xyz);
+				}
 				if (y < (mlx->map.y_tab - 1))
-					proj_p(mlx, x * gap_x, y * gap_y, tab[y][x] * gap_z, x * gap_x, (y + 1) * gap_y, tab[y + 1][x] * gap_z);
+				{
+					xyz[3] = x * gap_x;
+					xyz[4] = (y + 1) * gap_y;
+					xyz[5] = tab[y + 1][x] * gap_z;
+					ft_proj_p(mlx, xyz);
+				}
 			}
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/18 18:13:23 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/19 18:51:57 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ typedef struct		s_coord
 {
 	int				x1;
 	int				y1;
-	int				z1;
 	int				x2;
 	int				y2;
-	int				z2;
 	int				gap_x;
 	int				gap_y;
 	int				gap_z;
@@ -75,8 +73,8 @@ typedef struct		s_mlx
 t_line		*get_map(int fd);
 int			check_map(t_line *line);
 t_parse		get_tab(t_line *line);
-void		proj_iso(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
-void  		proj_p(t_mlx *mlx, int x1, int y1, int z1, int x2, int y2, int z2);
+void		proj_iso(t_mlx *mlx, int *xyz);
+void  		proj_p(t_mlx *mlx, int *xyz);
 void		draw_map(t_mlx *mlx);
 void		swap_xy(int *x1, int *x2, int *y1, int *y2);
 void		line(t_mlx *mlx, int color);
