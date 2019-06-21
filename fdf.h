@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/19 18:51:57 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/20 17:11:06 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define NOEVENTMASK 0L
+# define DESTROYNOTIFY 17
 
 typedef struct		s_line
 {
@@ -63,6 +65,7 @@ typedef struct		s_mlx
 {
 	void			*ptr;
 	void			*wdw;
+	int				init;
 	int				check;
 	char			proj;
 	t_img			img;
@@ -70,13 +73,16 @@ typedef struct		s_mlx
 	t_coord			p;
 }					t_mlx;
 
-t_line		*get_map(int fd);
-int			check_map(t_line *line);
-t_parse		get_tab(t_line *line);
-void		proj_iso(t_mlx *mlx, int *xyz);
-void  		proj_p(t_mlx *mlx, int *xyz);
-void		draw_map(t_mlx *mlx);
-void		swap_xy(int *x1, int *x2, int *y1, int *y2);
-void		line(t_mlx *mlx, int color);
+t_line				*get_map(int fd);
+int					check_map(t_line *line);
+t_parse				get_tab(t_line *line);
+void				proj_iso(t_mlx *mlx, int *xyz);
+void  				proj_p(t_mlx *mlx, int *xyz);
+void				draw_map(t_mlx *mlx);
+void				swap_xy(int *x1, int *x2, int *y1, int *y2);
+void				line(t_mlx *mlx, int color);
+int					keyboard(int key, t_mlx *mlx);
+int					ft_exit(t_mlx *mlx);
+void				init_map(t_mlx *mlx);
 
 #endif

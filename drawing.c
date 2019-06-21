@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/19 20:24:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/20 17:10:25 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,52 @@ void	line(t_mlx *mlx, int color)
 			* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
 			y++;
 		}
+	}
+}
+
+void		xyz(t_mlx *mlx, int x, int y)
+{
+	int xyz[6];
+
+	xyz[0] = x * mlx->p.gap_x;
+	xyz[1] = y * mlx->p.gap_y;
+	xyz[2] = mlx->map.tab[y][x] * mlx->p.gap_z;
+	if (x < (mlx->map.x_tab - 1))
+	{
+		xyz[3] = (x + 1) * mlx->p.gap_x;
+		xyz[4] = y * mlx->p.gap_y;
+		xyz[5] = mlx->map.tab[y][x + 1] * mlx->p.gap_z;
+		proj(mlx, xyz);
+	}
+	if (y < (mlx->map.y_tab - 1))
+	{
+		xyz[3] = x * mlx->p.gap_x;
+		xyz[4] = (y + 1) * mlx->p.gap_y;
+		xyz[5] = mlx->map.tab[y + 1][x] * mlx->p.gap_z;
+		proj(mlx, xyz);
+	}
+}
+
+void		init_map(t_mlx *mlx)
+{
+	int		x;
+	int		y;
+
+	if (mlx->init == 0)
+	{
+		mlx->p.gap_x = WIN_WIDTH / (mlx->map.x_tab + 1);
+		mlx->p.gap_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
+	}
+	mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 10;
+	y = 0;
+	while (y < mlx->map.y_tab)
+	{
+		x = 0;
+		while (x < mlx->map.x_tab)
+		{
+			xyz(mlx, x, y);
+			x++;
+		}
+		y++;
 	}
 }
