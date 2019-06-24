@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/20 17:11:06 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:02:55 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_coord
 	int				gap_x;
 	int				gap_y;
 	int				gap_z;
+	int				alt;
 }					t_coord;
 
 typedef struct		s_mlx

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/20 17:10:25 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:03:36 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,15 +156,17 @@ void		init_map(t_mlx *mlx)
 	{
 		mlx->p.gap_x = WIN_WIDTH / (mlx->map.x_tab + 1);
 		mlx->p.gap_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
+		mlx->p.alt = 10;
+		mlx->init = 1;
 	}
-	mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 10;
+	mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / mlx->p.alt;
 	y = 0;
 	while (y < mlx->map.y_tab)
 	{
 		x = 0;
 		while (x < mlx->map.x_tab)
 		{
-			xyz(mlx, x, y);
+			ft_xyz(mlx, x, y);
 			x++;
 		}
 		y++;
