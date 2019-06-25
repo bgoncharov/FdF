@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 16:02:59 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:07:15 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->p.alt -= 2;
 	if (key == 37)
 		mlx->p.alt += 2;
-	ft_new_img(mlx);
+	new_img(mlx);
 	return (0);
 }

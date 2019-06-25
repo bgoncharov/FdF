@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 16:03:36 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:07:01 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void		init_map(t_mlx *mlx)
 		x = 0;
 		while (x < mlx->map.x_tab)
 		{
-			ft_xyz(mlx, x, y);
+			xyz(mlx, x, y);
 			x++;
 		}
 		y++;
