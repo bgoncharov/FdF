@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 17:02:21 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:38:05 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,42 @@ t_line		*get_map(int fd)
 {
 	int		i;
 	char	*line;
-	t_line	*list;
+	t_line	*lst;
 	t_line	*begin;
 
-	if (!(list = malloc(sizeof(t_line))))
+	if (!(lst = malloc(sizeof(t_line))))
 		return (0);
-	begin = list;
+	begin = lst;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (!(list->str = ft_strsplit(line, ' ')))
+		if (!(lst->str = ft_strsplit(line, ' ')))
 			return (0);
 		i = 0;
-		while (list->str[i])
+		while (lst->str[i])
 			i++;
-		list->x_str = i;
-		list->next = malloc(sizeof(t_line));
-		list = list->next;
-		list->y_str++;
+		lst->x_str = i;
+		if (!(lst->next = malloc(sizeof(t_line))))
+			return (0);
+		lst = lst->next;
+		lst->str = NULL;
 		free(line);
 	}
-	list->next = NULL;
+	lst->next = NULL;
 	return (begin);
 }
 
 int			check_map(t_line *line)
 {
 	t_line	*tmp;
-	int		x;
 	int		nb_line;
 
 	tmp = line;
 	nb_line = 0;
-	x = line->x_str;
 	while (tmp->next)
 	{
-		if (x != tmp->x_str)
+		if (line->x_str != tmp->x_str)
 		{
-			write(2, "Error: The file is invalid\n", 27);
+			write(2, "Error: The map is invalid\n", 26);
 			exit(1);
 		}
 		tmp = tmp->next;
@@ -65,18 +64,18 @@ int			free_list(t_line *line)
 {
 	int		i;
 
-	printf("%p ", line->next);
-	if (line->next->next != NULL)
-		free_list(line->next);
+	if (line->next != NULL)
+		free_lst(line->next);
 	i = 0;
-	printf("str:%p\n", line->str);
-	printf("stri:%s\n", line->str[0]);
 	while (line->str && line->str[i])
 	{
-		printf("%s:", line->str[i]);
 		free(line->str[i]);
 		i++;
 	}
+	if (line->str)
+		free(line->str);
+	if (line)
+		free(line);
 	return (0);
 }
 
@@ -104,7 +103,6 @@ t_parse		get_tab(t_line *line)
 		j++;
 		line = line->next;
 	}
-	map.tab[j] = 0;
 	free_list(begin);
 	return (map);
 }
