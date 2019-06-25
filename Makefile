@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 17:15:00 by bogoncha          #+#    #+#              #
-#    Updated: 2019/06/20 17:07:26 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/06/24 18:34:27 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = gcc
 SRC = main.c \
 	parser.c \
 	drawing.c \
-	keyboard.c
+	keyboard.c \
 
 all: $(NAME)
 

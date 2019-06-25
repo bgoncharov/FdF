@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 16:07:01 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 18:32:09 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,31 @@
 
 void	proj(t_mlx *mlx, int *xyz)
 {
-	int		a;
-	int		b;
-	int		color;
+	int		c;
 
-	a = 500;
+	c = 5;
 	if (mlx->proj == 'p')
 	{
-		mlx->p.x1 = mlx->p.gap_x + xyz[0] + (a * xyz[2]) / 1000;
-		mlx->p.x2 = mlx->p.gap_x + xyz[3] + (a * xyz[5]) / 1000;
-		mlx->p.y1 = mlx->p.gap_y + xyz[1] + (a * xyz[2]) / 2000;
-		mlx->p.y2 = mlx->p.gap_y + xyz[4] + (a * xyz[5]) / 2000;
+		mlx->p.x1 = mlx->p.gap_x + xyz[0] + (c * xyz[2]) / 10;
+		mlx->p.x2 = mlx->p.gap_x + xyz[3] + (c * xyz[5]) / 10;
+		mlx->p.y1 = mlx->p.gap_y + xyz[1] + (c * xyz[2]) / 20;
+		mlx->p.y2 = mlx->p.gap_y + xyz[4] + (c * xyz[5]) / 20;
 	}
 	if (mlx->proj == 'i')
 	{
-		b = 500;
-		mlx->p.x1 = (WIN_WIDTH * 2) / 5 + (a * xyz[0] - b * xyz[1]) / 1000;
-		mlx->p.x2 = (WIN_WIDTH * 2) / 5 + (a * xyz[3] - b * xyz[4]) / 1000;
-		mlx->p.y1 = WIN_HEIGHT / 5 - xyz[2] + ((a / 2) * xyz[0] + (b / 2)
-		* xyz[1]) / 1000;
-		mlx->p.y2 = WIN_HEIGHT / 5 - xyz[5] + ((a / 2) * xyz[3] + (b / 2)
-		* xyz[4]) / 1000;
+		mlx->p.x1 = (WIN_WIDTH * 2) / 5 + (c * xyz[0] - c * xyz[1])
+		/ 10;
+		mlx->p.x2 = (WIN_WIDTH * 2) / 5 + (c * xyz[3] - c * xyz[4])
+		/ 10;
+		mlx->p.y1 = WIN_HEIGHT / 5 - xyz[2] + ((c / 2) * xyz[0]
+		+ (c / 2) * xyz[1]) / 10;
+		mlx->p.y2 = WIN_HEIGHT / 5 - xyz[5] + ((c / 2) * xyz[3]
+		+ (c / 2) * xyz[4]) / 10;
 	}
-	color = 65535;
 	if (xyz[2] > 0 || xyz[5] > 0)
-		color = 16761035;
-	line(mlx, color);
+		line(mlx, 16761035);
+	else
+		line(mlx, 65535);
 }
 
 void		draw_map(t_mlx *mlx)
@@ -107,8 +106,11 @@ void	line(t_mlx *mlx, int color)
 		x = mlx->p.x1;
 		while (x <= mlx->p.x2)
 		{
-			mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *
-			(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
+			if (mlx->p.x2 == mlx->p.x1)
+				printf("(div0 x2-x1) = %d\n", mlx->p.x2 - mlx->p.x1);
+			else
+				mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *
+				(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
 			x++;
 		}
 	}
@@ -117,8 +119,11 @@ void	line(t_mlx *mlx, int color)
 		y = mlx->p.y1;
 		while (y <= mlx->p.y2)
 		{
-			mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
-			* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
+			if (mlx->p.y2 == mlx->p.y1)
+				printf("(div0 y2-y1) = %d\n", mlx->p.y2 - mlx->p.y1);
+			else 
+				mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
+							* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
 			y++;
 		}
 	}
@@ -156,10 +161,9 @@ void		init_map(t_mlx *mlx)
 	{
 		mlx->p.gap_x = WIN_WIDTH / (mlx->map.x_tab + 1);
 		mlx->p.gap_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-		mlx->p.alt = 10;
+		mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 12;
 		mlx->init = 1;
 	}
-	mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / mlx->p.alt;
 	y = 0;
 	while (y < mlx->map.y_tab)
 	{
