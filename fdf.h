@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 16:02:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:45:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_line
 {
 	char			**str;
 	int				x_str;
-	int				y_str;
 	struct s_line	*next;
 }					t_line;
 
