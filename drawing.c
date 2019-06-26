@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 18:32:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:52:13 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,10 @@ void		init_map(t_mlx *mlx)
 		mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 12;
 		mlx->init = 1;
 	}
+	if (mlx->p.gap_x == 0)
+	       	mlx->p.gap_x = 1;
+	if (mlx->p.gap_y == 0)
+	       	mlx->p.gap_y = 1;
 	y = 0;
 	while (y < mlx->map.y_tab)
 	{
