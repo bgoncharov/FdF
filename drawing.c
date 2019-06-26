@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 18:03:56 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 20:25:48 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,34 @@ void	proj(t_mlx *mlx, int *xyz)
 		mlx->p.y2 = WIN_HEIGHT / 5 - xyz[5] + ((c / 2) * xyz[3]
 		+ (c / 2) * xyz[4]) / 10;
 	}
-	if (xyz[2] > 0 || xyz[5] > 0)
+	if (1 || (mlx->p.x1 == mlx->p.x2) || (mlx->p.y1 == mlx->p.y2))
+		printf("gap:%d/%d/%d xy1:%d/%d xy2:%d/%d z1%d z2%d\n", mlx->p.gap_x, mlx->p.gap_y, mlx->p.gap_z, mlx->p.x1, mlx->p.y1, mlx->p.x2, mlx->p.y2, xyz[2], xyz[5]);
+	if (xyz[2] != 0 || xyz[5] != 0)
 		line(mlx, 16761035);
 	else
 		line(mlx, 65535);
 }
 
-void		draw_map(t_mlx *mlx)
+void		xyz(t_mlx *mlx, int x, int y)
 {
-	int		x;
-	int		y;
-	int		xyz[6];
+	int xyz[6];
 
-	if (mlx->check == 0)
+	xyz[0] = x * mlx->p.gap_x;
+	xyz[1] = y * mlx->p.gap_y;
+	xyz[2] = mlx->map.tab[y][x] * mlx->p.gap_z;
+	if (x < (mlx->map.x_tab - 1))
 	{
-		mlx->p.gap_x = WIN_WIDTH / (mlx->map.x_tab + 1);
-		mlx->p.gap_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-		mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 10;
+		xyz[3] = (x + 1) * mlx->p.gap_x;
+		xyz[4] = y * mlx->p.gap_y;
+		xyz[5] = mlx->map.tab[y][x + 1] * mlx->p.gap_z;
+		proj(mlx, xyz);
 	}
-	y = 0;
-	while (y < mlx->map.y_tab)
+	if (y < (mlx->map.y_tab - 1))
 	{
-		x = 0;
-		while (x < mlx->map.x_tab)
-		{
-			xyz[0] = x * mlx->p.gap_x;
-			xyz[1] = y * mlx->p.gap_y;
-			xyz[2] = mlx->map.tab[y][x] * mlx->p.gap_z;
-			if (x < (mlx->map.x_tab - 1))
-			{
-				xyz[3] = (x + 1) * mlx->p.gap_x;
-				xyz[4] = y * mlx->p.gap_y;
-				xyz[5] = mlx->map.tab[y][x + 1] * mlx->p.gap_z;
-				proj(mlx, xyz);
-			}
-			if (y < (mlx->map.y_tab - 1))
-			{
-				xyz[3] = x * mlx->p.gap_x;
-				xyz[4] = (y + 1) * mlx->p.gap_y;
-				xyz[5] = mlx->map.tab[y + 1][x] * mlx->p.gap_z;
-				proj(mlx, xyz);
-			}
-			x++;
-		}
-		y++;
+		xyz[3] = x * mlx->p.gap_x;
+		xyz[4] = (y + 1) * mlx->p.gap_y;
+		xyz[5] = mlx->map.tab[y + 1][x] * mlx->p.gap_z;
+		proj(mlx, xyz);
 	}
 }
 
@@ -106,8 +90,9 @@ void	line(t_mlx *mlx, int color)
 		x = mlx->p.x1;
 		while (x <= mlx->p.x2)
 		{
-			mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *
-			(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
+			printf("%d:",WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) * (x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x);
+			if ((WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) * (x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x) > 0)
+					mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *	(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
 			x++;
 		}
 	}
@@ -116,34 +101,13 @@ void	line(t_mlx *mlx, int color)
 		y = mlx->p.y1;
 		while (y <= mlx->p.y2)
 		{
-			mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
-			* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
+			printf("%d:",WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1) * (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1)));
+			if ((WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)	* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))) > 0)
+				mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)	* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
 			y++;
 		}
 	}
-}
-
-void		xyz(t_mlx *mlx, int x, int y)
-{
-	int xyz[6];
-
-	xyz[0] = x * mlx->p.gap_x;
-	xyz[1] = y * mlx->p.gap_y;
-	xyz[2] = mlx->map.tab[y][x] * mlx->p.gap_z;
-	if (x < (mlx->map.x_tab - 1))
-	{
-		xyz[3] = (x + 1) * mlx->p.gap_x;
-		xyz[4] = y * mlx->p.gap_y;
-		xyz[5] = mlx->map.tab[y][x + 1] * mlx->p.gap_z;
-		proj(mlx, xyz);
-	}
-	if (y < (mlx->map.y_tab - 1))
-	{
-		xyz[3] = x * mlx->p.gap_x;
-		xyz[4] = (y + 1) * mlx->p.gap_y;
-		xyz[5] = mlx->map.tab[y + 1][x] * mlx->p.gap_z;
-		proj(mlx, xyz);
-	}
+	printf("EOL\n--------------------------------------\n");
 }
 
 void		init_map(t_mlx *mlx)
@@ -151,11 +115,12 @@ void		init_map(t_mlx *mlx)
 	int		x;
 	int		y;
 
+	printf("----------------NEW---------------\n");
 	if (mlx->init == 0)
 	{
 		mlx->p.gap_x = WIN_WIDTH / (mlx->map.x_tab + 1);
 		mlx->p.gap_y = WIN_HEIGHT / (mlx->map.y_tab + 1);
-		mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 12;
+		mlx->p.gap_z = (mlx->p.gap_x + mlx->p.gap_y) / 15;
 		mlx->init = 1;
 	}
 	if (mlx->p.gap_x == 0)
