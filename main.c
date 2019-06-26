@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/20 17:08:18 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:54:47 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		ft_exit(t_mlx *mlx)
 {
+	mlx_destroy_image(mlx->ptr, mlx->img.img_ptr);
 	mlx_destroy_window(mlx->ptr, mlx->wdw);
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 17:52:13 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 18:03:56 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,8 @@ void	line(t_mlx *mlx, int color)
 		x = mlx->p.x1;
 		while (x <= mlx->p.x2)
 		{
-			if (mlx->p.x2 == mlx->p.x1)
-				printf("(div0 x2-x1) = %d\n", mlx->p.x2 - mlx->p.x1);
-			else
-				mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *
-				(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
+			mlx->img.data[WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1) *
+			(x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x] = color;
 			x++;
 		}
 	}
@@ -119,11 +116,8 @@ void	line(t_mlx *mlx, int color)
 		y = mlx->p.y1;
 		while (y <= mlx->p.y2)
 		{
-			if (mlx->p.y2 == mlx->p.y1)
-				printf("(div0 y2-y1) = %d\n", mlx->p.y2 - mlx->p.y1);
-			else 
-				mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
-							* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
+			mlx->img.data[WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
+			* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1))] = color;
 			y++;
 		}
 	}

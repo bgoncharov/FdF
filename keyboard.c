@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 18:32:24 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 18:04:17 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,22 @@ void	new_img(t_mlx *mlx)
 
 int			keyboard(int key, t_mlx *mlx)
 {
-	printf("Key:%d\n", key);
 	if (key == 53)
 		ft_exit(mlx);
 	if (key == 69 || key == 24)
 	{
-		mlx->p.gap_x *= 1.1;
-		mlx->p.gap_y *= 1.1;
+		mlx->p.gap_x++;
+		mlx->p.gap_y++;
 	}
-	if (key == 78 || key == 27)
+	if ((key == 78 || key == 27) && mlx->p.gap_x != 0 && mlx->p.gap_y != 0)
 	{
-		mlx->p.gap_x *= 0.9;
-		mlx->p.gap_y *= 0.9;
+		mlx->p.gap_x--;
+		mlx->p.gap_y--;
 	}
 	if (key == 4 || key == 126)
-		mlx->p.gap_z += 1;
+		mlx->p.gap_z++;;
 	if (key == 37 || key == 125)
-		mlx->p.gap_z -= 1;
+		mlx->p.gap_z--;
 	new_img(mlx);
 	return (0);
 }
