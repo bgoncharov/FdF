@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/24 18:31:54 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 20:38:09 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_parse		get_tab(t_line *line)
 			k = 0;
 			while (line->str[i][k])
 			{
-				if (!ft_isdigit(line->str[i][k]))
+				if (!ft_isdigit(line->str[i][k]) && !(line->str[i][k] == '-'))
 					error_map(0);
 				k++;
 			}

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 18:04:17 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/25 20:38:29 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->p.gap_y--;
 	}
 	if (key == 4 || key == 126)
-		mlx->p.gap_z++;;
+		mlx->p.gap_z++;
 	if (key == 37 || key == 125)
 		mlx->p.gap_z--;
 	new_img(mlx);
