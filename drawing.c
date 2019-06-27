@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/26 21:43:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/26 21:59:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,6 @@ void		xyz(t_mlx *mlx, int x, int y)
 		xyz[5] = mlx->map.tab[y + 1][x] * mlx->p.gap_z;
 		proj(mlx, xyz);
 	}
-}
-
-void	swap_xy(int *x1, int *x2, int *y1, int *y2)
-{
-	int		tmp;
-
-	tmp = *x2;
-	*x2 = *x1;
-	*x1 = tmp;
-	tmp = *y2;
-	*y2 = *y1;
-	*y1 = tmp;
 }
 
 void	line(t_mlx *mlx, int color)

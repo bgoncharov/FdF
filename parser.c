@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 20:38:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/26 22:00:37 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,6 @@ t_line		*get_map(int fd)
 	return (begin);
 }
 
-void		error_map(int index)
-{
-	if (index == 0)
-		write(2, "Error: The map is invalid\n", 26);
-	if (index == 1)
-		write(2, "Error: Wrong memory allocation\n", 31);
-	exit(1);
-}
-
 int			check_map(t_line *line)
 {
 	t_line	*tmp;
@@ -66,10 +57,26 @@ int			check_map(t_line *line)
 	return (nb_line);
 }
 
+int			check_alt(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]) && !(str[0] == '-'))
+			error_map(0);
+		i++;
+	}
+	return (0);
+}
+
 int			free_list(t_line *line)
 {
 	int		i;
 
+	if (!line)
+		error_map(1);
 	if (line->next != NULL)
 		free_list(line->next);
 	i = 0;
@@ -91,10 +98,7 @@ t_parse		get_tab(t_line *line)
 	t_line	*begin;
 	int		i;
 	int		j;
-	int		k;
 
-	if (!line)
-		error_map(1);
 	begin = line;
 	map.y_tab = check_map(line);
 	map.x_tab = line->x_str;
@@ -104,15 +108,8 @@ t_parse		get_tab(t_line *line)
 	{
 		map.tab[j] = malloc(sizeof(int *) * line->x_str);
 		i = 0;
-		while (i < line->x_str)
+		while (i < line->x_str && check_alt(line->str[i]) == 0)
 		{
-			k = 0;
-			while (line->str[i][k])
-			{
-				if (!ft_isdigit(line->str[i][k]) && !(line->str[i][k] == '-'))
-					error_map(0);
-				k++;
-			}
 			map.tab[j][i] = atoi(line->str[i]);
 			i++;
 		}

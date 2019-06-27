@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 17:50:51 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/26 21:59:08 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void				line(t_mlx *mlx, int color);
 int					keyboard(int key, t_mlx *mlx);
 int					ft_exit(t_mlx *mlx);
 void				init_map(t_mlx *mlx);
+void				swap_xy(int *x1, int *x2, int *y1, int *y2);
+void				error_map(int index);
 
 #endif
