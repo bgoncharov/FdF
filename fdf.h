@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/26 21:59:08 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:59:14 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int					ft_exit(t_mlx *mlx);
 void				init_map(t_mlx *mlx);
 void				swap_xy(int *x1, int *x2, int *y1, int *y2);
 void				error_map(int index);
+void				define_gap(t_mlx *mlx, int zoom);
 
 #endif
