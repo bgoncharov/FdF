@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 17:24:49 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:27:01 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			get_addr(t_mlx *mlx, int i)
 				addr = WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
 				* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1));
 		}
-		if (addr <= 0)
+		if (addr <= 0 || addr > (WIN_WIDTH * WIN_HEIGHT))
 			return (0);
 		return (addr);
 }
