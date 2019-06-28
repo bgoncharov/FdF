@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 17:15:00 by bogoncha          #+#    #+#              #
-#    Updated: 2019/06/27 17:27:37 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/06/27 17:35:15 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJ)
 	@echo "\033[32m>>\033[0m \033[33mStarting library & $(NAME)\033[32m compilation\033[0m \033[0m"
 	@make -C libft
 	@make -C minilibx
-	@$(CC) $(LDFLAGS) $(LDLIBS) -g3 -fsanitize=address $^ -o $@
+	@$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 	@echo "\033[32m>> $(NAME) correctly created ... OK\033[0m"
 
 %.o: %.c fdf.h
