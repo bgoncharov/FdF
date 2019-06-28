@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 17:34:01 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:39:00 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_line		*get_map(int fd)
 	if (!(lst = malloc(sizeof(t_line))))
 		return (0);
 	begin = lst;
+	lst->str = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (!(lst->str = ft_strsplit(line, ' ')))
@@ -54,6 +55,8 @@ int			check_map(t_line *line)
 		tmp = tmp->next;
 		nb_line++;
 	}
+	if (nb_line == 0)
+		error_map(0);
 	return (nb_line);
 }
 
