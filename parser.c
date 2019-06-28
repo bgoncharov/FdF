@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/26 22:00:37 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:34:01 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ int			check_alt(char *str)
 	int i;
 
 	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;	
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]) && !(str[0] == '-'))
+		if (!ft_isdigit(str[i]))
 			error_map(0);
 		i++;
 	}

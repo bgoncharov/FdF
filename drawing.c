@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 17:27:01 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:33:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	proj(t_mlx *mlx, int *xyz)
 		/ 10;
 		mlx->p.x2 = (WIN_WIDTH * 2) / 5 + (c * xyz[3] - c * xyz[4])
 		/ 10;
-		mlx->p.y1 = WIN_HEIGHT / 5 - xyz[2] + ((c / 2) * xyz[0]
+		mlx->p.y1 = WIN_HEIGHT / 3 - xyz[2] + ((c / 2) * xyz[0]
 		+ (c / 2) * xyz[1]) / 10;
-		mlx->p.y2 = WIN_HEIGHT / 5 - xyz[5] + ((c / 2) * xyz[3]
+		mlx->p.y2 = WIN_HEIGHT / 3 - xyz[5] + ((c / 2) * xyz[3]
 		+ (c / 2) * xyz[4]) / 10;
 	}
 	if (xyz[2] != 0 || xyz[5] != 0)

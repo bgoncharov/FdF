@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/25 20:38:29 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:34:13 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int			keyboard(int key, t_mlx *mlx)
 		ft_exit(mlx);
 	if (key == 69 || key == 24)
 	{
-		mlx->p.gap_x++;
-		mlx->p.gap_y++;
+		mlx->p.gap_x += 2;
+		mlx->p.gap_y += 2;
 	}
-	if ((key == 78 || key == 27) && mlx->p.gap_x != 0 && mlx->p.gap_y != 0)
+	if ((key == 78 || key == 27) && mlx->p.gap_x > 1 && mlx->p.gap_y > 1)
 	{
-		mlx->p.gap_x--;
-		mlx->p.gap_y--;
+		mlx->p.gap_x -= 2;
+		mlx->p.gap_y -= 2;
 	}
 	if (key == 4 || key == 126)
 		mlx->p.gap_z++;
