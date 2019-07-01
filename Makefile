@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 17:15:00 by bogoncha          #+#    #+#              #
-#    Updated: 2019/06/27 17:35:15 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/07/01 16:37:43 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC = -I /usr/local/include
 LDFLAGS = -L ./minilibx -L ./libft
 LDLIBS = -lmlx -framework OpenGL -framework AppKit -lft
 CFLAGS = -Wall -Wextra -Werror 
-CC = gcc
+CC = gcc -g3 -fsanitize=address
 SRC = main.c \
 	parser.c \
 	drawing.c \
