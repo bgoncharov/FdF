@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 17:34:13 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:44:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,21 @@ void	new_img(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
 }
 
+void	move_map(int key, t_mlx *mlx)
+{
+	if (key == 125)
+		mlx->p.offset_y += 5;
+	if (key == 126)
+		mlx->p.offset_y -= 5;
+	if (key == 124)
+		mlx->p.offset_x += 5;
+	if (key == 123)
+		mlx->p.offset_x -= 5;
+}
+
 int			keyboard(int key, t_mlx *mlx)
 {
+	printf("Key: %d\n", key);
 	if (key == 53)
 		ft_exit(mlx);
 	if (key == 69 || key == 24)
@@ -34,10 +47,12 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->p.gap_x -= 2;
 		mlx->p.gap_y -= 2;
 	}
-	if (key == 4 || key == 126)
+	if (key == 4)
 		mlx->p.gap_z++;
-	if (key == 37 || key == 125)
+	if (key == 37)
 		mlx->p.gap_z--;
+	if (key >= 123 && key <= 126)
+		move_map(key, mlx);
 	new_img(mlx);
 	return (0);
 }

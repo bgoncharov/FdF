@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 16:58:52 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:40:03 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		error_map(int index)
 	exit(1);
 }
 
-void		define_gap(t_mlx *mlx, int zoom)
+void		define_gap(t_mlx *mlx)
 {
 	int		gap_x;
 	int		gap_y;
@@ -46,10 +46,17 @@ void		define_gap(t_mlx *mlx, int zoom)
 		gap_y = gap_x;
 	else
 		gap_x = gap_y;
-	if (zoom == 0)
+	mlx->p.gap_x = gap_x;
+	mlx->p.gap_y = gap_y;
+	mlx->p.gap_z = gap_z;
+	if (mlx->proj == 'p')
 	{
-		mlx->p.gap_x = gap_x;
-		mlx->p.gap_y = gap_y;
-		mlx->p.gap_z = gap_z;
+		mlx->p.offset_x = mlx->p.gap_x;
+		mlx->p.offset_y = mlx->p.gap_y;
+	}
+	else
+	{
+		mlx->p.offset_x = WIN_WIDTH * 2 / 5;
+		mlx->p.offset_y = WIN_HEIGHT / 3;
 	}
 }
