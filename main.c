@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/06/27 17:38:07 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:46:40 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,15 @@ void		ft_init_mlx(t_mlx *mlx)
 	mlx->init = 0;
 }
 
+void	menu(t_mlx *mlx)
+{	
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 10, 0xFFFFFF, "Commande menu");
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 40, 0xFFFFFF, "      --     ");
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 70, 0xFFFFFF, "- + : zoom");
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 90, 0xFFFFFF, "< > : change altitude");
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 110, 0xFFFFFF, "up, down, left, rigth, : move map");
+}
+
 int			main(int ac, char **av)
 {
 	int		fd;
@@ -77,6 +86,7 @@ int			main(int ac, char **av)
 			mlx.proj = 'i';
 		init_map(&mlx);
 		mlx_put_image_to_window(mlx.ptr, mlx.wdw, mlx.img.img_ptr, 0, 0);
+		menu(&mlx);
 		mlx_key_hook(mlx.wdw, keyboard, &mlx);
 		mlx_hook(mlx.wdw, DESTROYNOTIFY, NOEVENTMASK, ft_exit, &mlx);
 		mlx_loop(mlx.ptr);
