@@ -6,11 +6,34 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:21:31 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:46:02 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int			in_scr(t_mlx *mlx, char c, int i)
+{
+	if (c == 'x')
+	{
+		if (mlx->p.x2 - mlx->p.x1 == 0)
+			return (0);
+		return (1);
+	}
+	if (c == 'y')
+	{
+		if (mlx->p.y2 - mlx->p.y1 == 0)
+			return (0);
+		if (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1) * (i - mlx->p.y1))
+				/ (mlx->p.y2 - mlx->p.y1) > WIN_WIDTH)
+			return (0);
+		if (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1) * (i - mlx->p.y1))
+				/ (mlx->p.y2 - mlx->p.y1) < 0)
+			return (0);
+		return (1);
+	}
+	return (0);
+}
 
 int			color(t_mlx *mlx, int z1, int z2)
 {

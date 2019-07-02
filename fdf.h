@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:25:11 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:46:26 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void				error_map(int index);
 void				define_gap(t_mlx *mlx);
 void				menu(t_mlx *mlx);
 int					color(t_mlx *mlx, int z1, int z2);
+int					in_scr(t_mlx *mlx, char c, int i);
 
 #endif
