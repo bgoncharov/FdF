@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:27:25 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:33:06 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	new_img(t_mlx *mlx)
 	ft_bzero(mlx->img.data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
 	mlx_clear_window(mlx->ptr, mlx->wdw);
 	init_map(mlx);
-	mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, -1, -1);
 	menu(mlx);
 	return (0);
 }

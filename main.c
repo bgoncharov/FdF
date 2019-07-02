@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:18:46 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:32:50 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			main(int ac, char **av)
 		else
 			mlx.proj = 'i';
 		init_map(&mlx);
-		mlx_put_image_to_window(mlx.ptr, mlx.wdw, mlx.img.img_ptr, 0, 0);
+		mlx_put_image_to_window(mlx.ptr, mlx.wdw, mlx.img.img_ptr, -1, -1);
 		menu(&mlx);
 		mlx_hook(mlx.wdw, 2, 5, keyboard, &mlx);
 		mlx_hook(mlx.wdw, DESTROYNOTIFY, NOEVENTMASK, ft_exit, &mlx);
