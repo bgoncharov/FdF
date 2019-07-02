@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:33:06 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:39:11 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	menu(t_mlx *mlx)
 	mlx_string_put(mlx->ptr, mlx->wdw, 10, 10, 0xFFFFFF, "Commands:");
 	mlx_string_put(mlx->ptr, mlx->wdw, 10, 30, 0xFFFFFF, "Zoom          : +/-");
 	mlx_string_put(mlx->ptr, mlx->wdw, 10, 50, 0xFFFFFF, "+/- altitude  : H/L");
-	mlx_string_put(mlx->ptr, mlx->wdw, 10, 70, 0xFFFFFF, "Color         : C");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 70, 0xFFFFFF, "Color         : C/D");
 	mlx_string_put(mlx->ptr, mlx->wdw, 10, 90, 0xFFFFFF,
 			"Move the map  : arrows");
 }
