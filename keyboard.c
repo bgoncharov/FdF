@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:40:34 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:47:45 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int			keyboard(int key, t_mlx *mlx)
 void	menu(t_mlx *mlx)
 {
 	mlx_string_put(mlx->ptr, mlx->wdw, 10, 10, 0xFFFFFF, "Commands:");
-	mlx_string_put(mlx->ptr, mlx->wdw, 10, 40, 0xFFFFFF, "Zoom          : +/-");
-	mlx_string_put(mlx->ptr, mlx->wdw, 10, 60, 0xFFFFFF, "+/- altitude  : H/L");
-	mlx_string_put(mlx->ptr, mlx->wdw, 10, 80, 0xFFFFFF, "color         : c");
-	mlx_string_put(mlx->ptr, mlx->wdw, 10, 100, 0xFFFFFF, "Move maps     : < >");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 30, 0xFFFFFF, "Zoom          : +/-");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 50, 0xFFFFFF, "+/- altitude  : H/L");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 70, 0xFFFFFF, "Color         : c");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 90, 0xFFFFFF, "Move the map  : < >");
 }
