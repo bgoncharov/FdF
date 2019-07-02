@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:34:59 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:56:20 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,19 @@ t_parse		get_tab(t_line *line)
 	begin = line;
 	map.y_tab = check_map(line);
 	map.x_tab = line->x_str;
-	map.tab = (int **)malloc(sizeof(int **) * map.y_tab);
+	if (!(map.tab = (int **)malloc(sizeof(int **) * map.y_tab)))
+	{
+		ft_putendl_fd("malloc error", 2);
+		exit(0);
+	}
 	j = 0;
 	while (line->next)
 	{
-		map.tab[j] = (int *)malloc(sizeof(int *) * line->x_str);
+		if (!(map.tab[j] = (int *)malloc(sizeof(int *) * line->x_str)))
+		{
+			ft_putendl_fd("malloc error", 2);
+			exit(0);
+		}
 		i = 0;
 		while (i < line->x_str && check_alt(line->str[i]) == 0)
 		{

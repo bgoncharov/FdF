@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:46:40 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:01:53 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			ft_open(char *file)
 		write(2, "Error: Usage: ./fdf <file.fdf> -p/-i\n", 37);
 		exit(1);
 	}
-	if ((fd = open(file, O_RDONLY)) == -1)
+	if ((fd = open(file, O_RDONLY | O_SYMLINK)) == -1)
 	{
 		write(2, "Error: file doesn't exist\n", 26);
 		exit(1);
@@ -51,9 +51,21 @@ void		ft_init_mlx(t_mlx *mlx)
 {
 	t_img	img;
 
-	mlx->ptr = mlx_init();
-	mlx->wdw = mlx_new_window(mlx->ptr, WIN_WIDTH, WIN_HEIGHT, "FdF");
-	img.img_ptr = mlx_new_image(mlx->ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!(mlx->ptr = mlx_init()))
+	{
+		ft_putendl_fd("Error mlx", 1);
+		exit(1);
+	}
+	if (!(mlx->wdw = mlx_new_window(mlx->ptr, WIN_WIDTH, WIN_HEIGHT, "FdF")))
+		{
+			ft_putendl_fd("Error mlx", 1);
+			exit(1);
+		}
+	if (!(img.img_ptr = mlx_new_image(mlx->ptr, WIN_WIDTH, WIN_HEIGHT)))
+			{
+				ft_putendl_fd("Error mlx", 1);
+				exit(1);
+			}
 	img.data = (int *)mlx_get_data_addr(img.img_ptr, &(img.bpp), &(img.s_l),
 			&(img.endian));
 	mlx->img = img;
@@ -65,7 +77,7 @@ void	menu(t_mlx *mlx)
 	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 10, 0xFFFFFF, "Commande menu");
 	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 40, 0xFFFFFF, "      --     ");
 	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 70, 0xFFFFFF, "- + : zoom");
-	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 90, 0xFFFFFF, "< > : change altitude");
+	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 90, 0xFFFFFF, "H L : change altitude");
 	 mlx_string_put(mlx->ptr, mlx->wdw, 10, 110, 0xFFFFFF, "up, down, left, rigth, : move map");
 }
 
@@ -87,7 +99,7 @@ int			main(int ac, char **av)
 		init_map(&mlx);
 		mlx_put_image_to_window(mlx.ptr, mlx.wdw, mlx.img.img_ptr, 0, 0);
 		menu(&mlx);
-		mlx_key_hook(mlx.wdw, keyboard, &mlx);
+		mlx_hook(mlx.wdw, 2, 5, keyboard, &mlx);
 		mlx_hook(mlx.wdw, DESTROYNOTIFY, NOEVENTMASK, ft_exit, &mlx);
 		mlx_loop(mlx.ptr);
 	}
