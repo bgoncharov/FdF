@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:43:55 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:15:57 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ void	proj(t_mlx *mlx, int *xyz)
 		mlx->p.y2 = mlx->p.offset_y - xyz[5] + ((c / 2) * xyz[3]
 				+ (c / 2) * xyz[4]) / 10;
 	}
-	if (xyz[2] != 0 || xyz[5] != 0)
-		line(mlx, 16761035);
-	else
-		line(mlx, 65535);
+	if ((xyz[2] != 0 || xyz[5] != 0) && mlx->count == 0)
+		mlx->color = 16761035;
+	else if (mlx->count == 0) 
+		mlx->color = 65535;
+	line(mlx, mlx->color);
 }
 
 int			get_addr(t_mlx *mlx, int i)

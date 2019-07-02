@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:47:20 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:14:20 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 # include <fcntl.h>
+# include <math.h>
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -68,6 +69,8 @@ typedef struct		s_mlx
 	void			*wdw;
 	int				init;
 	int				check;
+	int				color;
+	int				count;
 	char			proj;
 	t_img			img;
 	t_parse			map;

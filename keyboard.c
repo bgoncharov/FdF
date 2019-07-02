@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:59:14 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:14:01 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->p.gap_z--;
 	if (key >= 123 && key <= 126)
 		move_map(key, mlx);
+	if (key == 8)
+	{
+		mlx->color = rand();
+		mlx->count++;
+	}
 	new_img(mlx);
 	menu(mlx);
 	return (0);
