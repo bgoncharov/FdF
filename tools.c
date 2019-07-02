@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 16:40:03 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:18:54 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void		error_map(int index)
 		write(2, "Error: The map is invalid\n", 26);
 	if (index == 1)
 		write(2, "Error: Wrong memory allocation\n", 31);
+	if (index == 2)
+		write(2, "Error with mlx\n", 15);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:14:01 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:20:42 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	new_img(t_mlx *mlx)
 	mlx_clear_window(mlx->ptr, mlx->wdw);
 	init_map(mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
+	menu(mlx);
 }
 
 void	move_map(int key, t_mlx *mlx)
@@ -59,6 +60,13 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->count++;
 	}
 	new_img(mlx);
-	menu(mlx);
 	return (0);
+}
+
+void	menu(t_mlx *mlx)
+{
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 10, 0xFFFFFF, "Commands:");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 40, 0xFFFFFF, "Zoom: +/-");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 60, 0xFFFFFF, "Move with arrows");
+	mlx_string_put(mlx->ptr, mlx->wdw, 10, 80, 0xFFFFFF, "+/- altitude: H/L");
 }
