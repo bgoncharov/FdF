@@ -6,7 +6,7 @@
 #    By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 17:15:00 by bogoncha          #+#    #+#              #
-#    Updated: 2019/07/01 21:11:56 by bogoncha         ###   ########.fr        #
+#    Updated: 2019/07/01 21:49:35 by bogoncha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C libft fclean
+	@make -C minilibx clean
 	@echo "\033[32m$(NAME) \033[31mremoved\033[0m"
 
 re: fclean all
