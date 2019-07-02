@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 17:25:21 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:35:32 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 19:30:33 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		init_map(t_mlx *mlx)
 	{
 		define_gap(mlx);
 		mlx->init = 1;
+		mlx->color = 0;
 	}
 	if (mlx->p.gap_x == 0)
 		mlx->p.gap_x = 1;

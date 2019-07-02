@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:27:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 20:55:11 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_line		*get_map(int fd)
 	return (begin);
 }
 
-int			check_map(t_line *line)
+void			check_map(t_line *line, t_parse *map)
 {
 	t_line	*tmp;
 	int		nb_line;
@@ -57,7 +57,8 @@ int			check_map(t_line *line)
 	}
 	if (nb_line == 0)
 		error_map(0);
-	return (nb_line);
+	map->x_tab = line->x_str;
+	map->y_tab = nb_line;
 }
 
 int			check_alt(char *str)
@@ -105,21 +106,14 @@ t_parse		get_tab(t_line *line)
 	int		j;
 
 	begin = line;
-	map.y_tab = check_map(line);
-	map.x_tab = line->x_str;
+	check_map(line, &map);
 	if (!(map.tab = (int **)malloc(sizeof(int **) * map.y_tab)))
-	{
-		ft_putendl_fd("malloc error", 2);
-		exit(0);
-	}
+		error_map(3);
 	j = 0;
 	while (line->next)
 	{
 		if (!(map.tab[j] = (int *)malloc(sizeof(int *) * line->x_str)))
-		{
-			ft_putendl_fd("malloc error", 2);
-			exit(0);
-		}
+			error_map(3);
 		i = 0;
 		while (i < line->x_str && check_alt(line->str[i]) == 0)
 		{
