@@ -6,19 +6,20 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:09:11 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:27:25 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	new_img(t_mlx *mlx)
+int	new_img(t_mlx *mlx)
 {
 	ft_bzero(mlx->img.data, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
 	mlx_clear_window(mlx->ptr, mlx->wdw);
 	init_map(mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->wdw, mlx->img.img_ptr, 0, 0);
 	menu(mlx);
+	return (0);
 }
 
 void	move_map(int key, t_mlx *mlx)
@@ -31,6 +32,15 @@ void	move_map(int key, t_mlx *mlx)
 		mlx->p.offset_x += 5;
 	if (key == 123)
 		mlx->p.offset_x -= 5;
+}
+
+void	change_proj(t_mlx *mlx)
+{
+	if (mlx->proj == 'i')
+		mlx->proj = 'p';
+	else if (mlx->proj == 'p')
+		mlx->proj = 'i';
+	mlx->init = 0;
 }
 
 int			keyboard(int key, t_mlx *mlx)
@@ -57,8 +67,9 @@ int			keyboard(int key, t_mlx *mlx)
 		mlx->color = -1;
 	if (key == 8)
 		mlx->color = rand();
-	new_img(mlx);
-	return (0);
+	if (key == 35)
+		change_proj(mlx);
+	return (new_img(mlx));
 }
 
 void	menu(t_mlx *mlx)

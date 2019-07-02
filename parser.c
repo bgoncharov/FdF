@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 20:05:01 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 20:55:11 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:26:10 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void			check_map(t_line *line, t_parse *map)
 		nb_line++;
 	}
 	if (nb_line == 0)
+		error_map(0);
+	if (line->x_str == 1 && nb_line == 1)
 		error_map(0);
 	map->x_tab = line->x_str;
 	map->y_tab = nb_line;

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:18:17 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:21:31 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,6 @@ int			color(t_mlx *mlx, int z1, int z2)
 			return(16761035);
 	}
 	return (65535);
-}
-
-int			in_wndw(t_mlx *mlx, char c, int i)
-{
-	if (c == 'x')
-	{
-		if (((i > 0 && i < WIN_WIDTH) ||
-					(mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
-				&& ((mlx->p.y1 > 0 && mlx->p.y1 < WIN_WIDTH)
-					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_WIDTH)))
-			printf("XLine:x1y1 (%d,%d) x2y2 (%d,%d)\n", i, mlx->p.y1, mlx->p.x2, mlx->p.y2);
-			return (1);
-	}
-	if (c == 'y')
-	{
-		if (((mlx->p.x1 > 0 && mlx->p.x1 < WIN_WIDTH) ||
-					(mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
-				&& ((i > 0 && i < WIN_WIDTH)
-					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_WIDTH)))
-			printf("YLine: 1 (%d,%d) 2 (%d,%d)\n", mlx->p.x1, i, mlx->p.x2, mlx->p.y2);
-			return (1);
-	}
-	return (0);
 }
 
 void		swap_xy(int *x1, int *y1, int *x2, int *y2)
