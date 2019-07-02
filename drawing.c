@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:13:09 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:19:24 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		line_y(t_mlx *mlx, int color)
 	if (mlx->p.y2 < mlx->p.y1)
 		swap_xy(&(mlx->p.x1), &(mlx->p.y1), &(mlx->p.x2), &(mlx->p.y2));
 	y = (mlx->p.y1 > 0) ? mlx->p.y1 : 0;
-	while (y <= mlx->p.y2 && y <= WIN_HEIGHT)
+	while (y <= mlx->p.y2 && y <= WIN_WIDTH)
 	{
 		pxl = 0;
 		if ((mlx->p.y2 - mlx->p.y1) != 0 && in_wndw(mlx, 'y', y) == 1)

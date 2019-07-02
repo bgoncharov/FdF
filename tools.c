@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:08:44 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:18:17 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,18 @@ int			in_wndw(t_mlx *mlx, char c, int i)
 	{
 		if (((i > 0 && i < WIN_WIDTH) ||
 					(mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
-				&& ((mlx->p.y1 > 0 && mlx->p.y1 < WIN_HEIGHT)
-					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_HEIGHT)))
+				&& ((mlx->p.y1 > 0 && mlx->p.y1 < WIN_WIDTH)
+					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_WIDTH)))
+			printf("XLine:x1y1 (%d,%d) x2y2 (%d,%d)\n", i, mlx->p.y1, mlx->p.x2, mlx->p.y2);
 			return (1);
 	}
 	if (c == 'y')
 	{
-		if (((mlx->p.x1 > 0 && mlx->p.x1 < WIN_WIDTH)
-					|| (mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
-				&& ((i > 0 && i < WIN_HEIGHT)
-					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_HEIGHT)))
+		if (((mlx->p.x1 > 0 && mlx->p.x1 < WIN_WIDTH) ||
+					(mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
+				&& ((i > 0 && i < WIN_WIDTH)
+					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_WIDTH)))
+			printf("YLine: 1 (%d,%d) 2 (%d,%d)\n", mlx->p.x1, i, mlx->p.x2, mlx->p.y2);
 			return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 17:13:36 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:22:41 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:18:46 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int			main(int ac, char **av)
 	int		fd;
 	t_mlx	mlx;
 
-	if (ac == 2 || (ac == 3 && (av[2][1] == 'i' || av[2][1] == 'p')))
+	if (ac == 2 || (ac == 3 && (!ft_strcmp(av[2], "-i")
+					|| !ft_strcmp(av[2], "-p"))))
 	{
 		fd = ft_open(av[1]);
 		mlx.map = get_tab(get_map(fd));
