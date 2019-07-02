@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:58:14 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 17:20:42 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 17:28:53 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	move_map(int key, t_mlx *mlx)
 
 int			keyboard(int key, t_mlx *mlx)
 {
-	printf("Key: %d\n", key);
 	if (key == 53)
 		ft_exit(mlx);
 	if (key == 69 || key == 24)
