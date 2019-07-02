@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:55:04 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 20:59:31 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:13:09 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void		line_x(t_mlx *mlx, int color)
 	int		x;
 	int		pxl;
 
-	pxl = 0;
 	if (mlx->p.x2 < mlx->p.x1)
 		swap_xy(&(mlx->p.x1), &(mlx->p.y1), &(mlx->p.x2), &(mlx->p.y2));
-	x = mlx->p.x1;
-	while (x <= mlx->p.x2)
+	x = (mlx->p.x1) > 0 ? mlx->p.x1 : 0;
+	while (x <= mlx->p.x2 && x <= WIN_WIDTH)
 	{
-		if ((mlx->p.x2 - mlx->p.x1) != 0)
+		pxl = 0;
+		if ((mlx->p.x2 - mlx->p.x1) != 0 && in_wndw(mlx, 'x', x) == 1)
 			pxl = WIN_WIDTH * (mlx->p.y1 + ((mlx->p.y2 - mlx->p.y1)
 						* (x - mlx->p.x1)) / (mlx->p.x2 - mlx->p.x1)) + x;
 		if (pxl > 0 && pxl < (WIN_WIDTH * WIN_HEIGHT))
@@ -37,15 +37,15 @@ void		line_y(t_mlx *mlx, int color)
 	int		y;
 	int		pxl;
 
-	pxl = 0;
 	if (mlx->p.y2 < mlx->p.y1)
 		swap_xy(&(mlx->p.x1), &(mlx->p.y1), &(mlx->p.x2), &(mlx->p.y2));
-	y = mlx->p.y1;
-	while (y <= mlx->p.y2)
+	y = (mlx->p.y1 > 0) ? mlx->p.y1 : 0;
+	while (y <= mlx->p.y2 && y <= WIN_HEIGHT)
 	{
-		if ((mlx->p.y2 - mlx->p.y1) != 0)
+		pxl = 0;
+		if ((mlx->p.y2 - mlx->p.y1) != 0 && in_wndw(mlx, 'y', y) == 1)
 			pxl = WIN_WIDTH * y + (mlx->p.x1 + ((mlx->p.x2 - mlx->p.x1)
-						* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1));
+			* (y - mlx->p.y1)) / (mlx->p.y2 - mlx->p.y1));
 		if (pxl > 0 && pxl < (WIN_WIDTH * WIN_HEIGHT))
 			mlx->img.data[pxl] = color;
 		y++;

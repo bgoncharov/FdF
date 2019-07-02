@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 21:54:50 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 20:56:14 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:08:44 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,28 @@ int			color(t_mlx *mlx, int z1, int z2)
 			return(16761035);
 	}
 	return (65535);
-}	
+}
+
+int			in_wndw(t_mlx *mlx, char c, int i)
+{
+	if (c == 'x')
+	{
+		if (((i > 0 && i < WIN_WIDTH) ||
+					(mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
+				&& ((mlx->p.y1 > 0 && mlx->p.y1 < WIN_HEIGHT)
+					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_HEIGHT)))
+			return (1);
+	}
+	if (c == 'y')
+	{
+		if (((mlx->p.x1 > 0 && mlx->p.x1 < WIN_WIDTH)
+					|| (mlx->p.x2 > 0 && mlx->p.x2 < WIN_WIDTH))
+				&& ((i > 0 && i < WIN_HEIGHT)
+					|| (mlx->p.y2 > 0 && mlx->p.y2 < WIN_HEIGHT)))
+			return (1);
+	}
+	return (0);
+}
 
 void		swap_xy(int *x1, int *y1, int *x2, int *y2)
 {
