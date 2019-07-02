@@ -6,7 +6,7 @@
 /*   By: bogoncha <bogoncha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 21:08:18 by bogoncha          #+#    #+#             */
-/*   Updated: 2019/07/01 21:46:26 by bogoncha         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:48:04 by bogoncha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FDF_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include "minilibx/mlx.h"
 # include "libft/libft.h"
